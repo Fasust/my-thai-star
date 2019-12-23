@@ -5,8 +5,7 @@ COPY package.json /app/package.json
 COPY yarn.lock /app/yarn.lock
 RUN yarn
 COPY . /app
-RUN node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod
-RUN yarn build --configuration=docker
+RUN node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod & yarn build --configuration=docker
 
 # 2. Deploy
 FROM nginx:latest
